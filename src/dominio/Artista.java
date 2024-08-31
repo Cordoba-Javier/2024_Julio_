@@ -1,28 +1,30 @@
 package dominio;
 
+import Interfaz.UserArtista;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
-public class Artista {
+public class Artista implements UserArtista {
 	
 	private String nombre;
 	private GregorianCalendar fechaNacto;
 	private GregorianCalendar fechaMuerte;
 	private Sexo sexo;
 	
-	public Artista(String nombre, GregorianCalendar fechaNacto, Sexo sexo) throws ExceptionArtista {
-		Calendar cal = GregorianCalendar.getInstance();
-		if (fechaNacto.get(Calendar.MONTH)>cal.get(Calendar.MONTH)) {
-		if((cal.getWeekYear()-fechaNacto.getWeekYear())<=18)
-			throw new ExceptionArtista("No se permiten artistas menores (17)");
-		}
+	private Artista(String nombre, GregorianCalendar fechaNacto, Sexo sexo) {
 		this.nombre=nombre.trim().toLowerCase();
 		this.fechaNacto=fechaNacto;
 		this.sexo=sexo;
 		this.fechaMuerte=null;
+	}
+
+	@Override
+	public Artista CrearArtiista(String nombre, GregorianCalendar fechaNacto, Sexo sexo) {
+		return new Artista(nombre,fechaNacto,sexo);
 	}
 
 	public String getNombre() {
@@ -76,9 +78,7 @@ public class Artista {
 	public String toString() {
 		return getArtis()+getNombre() +" ("+ getFechaCorta()+")";
 	}
-}
 
-class GetFech{
 	public String getFechaCorta() {
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy");
 
@@ -107,15 +107,15 @@ class GetFech{
 		return sdf.format(fechaMuerte.getTime());
 	}
 
-}
 
-class GenerArit{
+
+
 	public String getArtis() {
 		if(sexo==Sexo.Masculino)
 			return "El Artista: ";
 		return"La Artista: ";
 	}
-}
+
 
 
 

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class GestorArtista {
 
 	private static GestorArtista ga;
-	private ArrayList<Artista> misArtistas;
+	public static ArrayList<Artista> misArtistas;
 
 	private GestorArtista() {
 		misArtistas = new ArrayList<Artista>();
