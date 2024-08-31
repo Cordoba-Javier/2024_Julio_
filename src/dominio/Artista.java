@@ -24,9 +24,7 @@ public class Artista {
 		this.sexo=sexo;
 		this.fechaMuerte=null;
 	}
-	
-	
-	
+
 	public String getNombre() {
 		String[] tmp=nombre.split(" ");
 		String aux="";
@@ -37,67 +35,29 @@ public class Artista {
 		return aux.trim();
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public GregorianCalendar getFechaNacto() {
 		return fechaNacto;
 	}
 
-
 	public void setFechaNacto(GregorianCalendar fechaNacto) {
 		this.fechaNacto = fechaNacto;
 	}
-
 
 	public Sexo getSexo() {
 		return sexo;
 	}
 
-
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
-	
-
-	public String getFechaCorta() {
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy");
-		
-		return sdf.format(fechaNacto.getTime()); 
-	}
-	
-	public int getEdad() {
-		Calendar cal = GregorianCalendar.getInstance();
-		
-		if (fechaNacto.get(Calendar.MONTH)>cal.get(Calendar.MONTH))
-			return cal.getWeekYear()-fechaNacto.getWeekYear()-1;
-		return cal.getWeekYear()-fechaNacto.getWeekYear();
-	}
-	
-	public void setFechaMuerte(GregorianCalendar fechaMuerte) {
-		this.fechaMuerte=fechaMuerte;
-	}
-	
-	public GregorianCalendar getFechaMuerte() {
-		return fechaMuerte;
-	}
-	public String getFechaMuerteCorta() {
-		if(fechaMuerte==null)
-			return"Still Alive!";
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy");
-		return sdf.format(fechaMuerte.getTime());
-	}
-
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(fechaNacto, nombre, sexo);
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -111,20 +71,52 @@ public class Artista {
 		return Objects.equals(fechaNacto, other.fechaNacto) && Objects.equals(nombre, other.nombre)
 				&& sexo == other.sexo;
 	}
-	public String getArtis() {
-		if(sexo==Sexo.Masculino)
-			return "El Artista: ";
-		return"La Artista: ";
-	}
-
-
 
 	@Override
 	public String toString() {
 		return getArtis()+getNombre() +" ("+ getFechaCorta()+")";
 	}
-	
-	
-		
 }
+
+class GetFech{
+	public String getFechaCorta() {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy");
+
+		return sdf.format(fechaNacto.getTime());
+	}
+
+	public int getEdad() {
+		Calendar cal = GregorianCalendar.getInstance();
+
+		if (fechaNacto.get(Calendar.MONTH)>cal.get(Calendar.MONTH))
+			return cal.getWeekYear()-fechaNacto.getWeekYear()-1;
+		return cal.getWeekYear()-fechaNacto.getWeekYear();
+	}
+	public void setFechaMuerte(GregorianCalendar fechaMuerte) {
+		this.fechaMuerte=fechaMuerte;
+	}
+
+	public GregorianCalendar getFechaMuerte() {
+		return fechaMuerte;
+	}
+
+	public String getFechaMuerteCorta() {
+		if(fechaMuerte==null)
+			return"Still Alive!";
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy");
+		return sdf.format(fechaMuerte.getTime());
+	}
+
+}
+
+class GenerArit{
+	public String getArtis() {
+		if(sexo==Sexo.Masculino)
+			return "El Artista: ";
+		return"La Artista: ";
+	}
+}
+
+
+
 
