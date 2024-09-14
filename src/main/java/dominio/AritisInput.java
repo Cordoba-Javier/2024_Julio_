@@ -10,7 +10,7 @@ public class AritisInput {
         this.user = user;
 
     }
-    public static  Artista Entrada(String nombre,GregorianCalendar fechaNacto,Sexo sexo){
+    public Artista Entrada(String nombre,GregorianCalendar fechaNacto,Sexo sexo){
         return user.CrearArtiista(nombre,fechaNacto,sexo);
     }
 }
